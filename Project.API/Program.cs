@@ -1,4 +1,10 @@
 
+using Project.BusinessLayer.Abstracts;
+using Project.BusinessLayer.Concretes;
+using Project.DataAccessLayer.Abstracts;
+using Project.DataAccessLayer.Concretes;
+using Project.DataAccessLayer.EntityFramework;
+
 namespace Project.API
 {
     public class Program
@@ -6,6 +12,13 @@ namespace Project.API
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddDbContext<SignalRContext>();
+
+            builder.Services.AddScoped<IAboutService, AboutManager>();
+            builder.Services.AddScoped<IAboutDal, EfAboutDal>();
+
+            builder.Services.AddScoped<IBookingService, BookingManager>();
+            builder.Services.AddScoped<IBookingDal, EfBookingDal>();
 
             // Add services to the container.
 
