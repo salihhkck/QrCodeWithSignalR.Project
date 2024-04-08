@@ -9,5 +9,6 @@ namespace Project.DataAccessLayer.Abstracts
 {
     public interface IProductDal:IGenericDal<Product>
     {
+        List<Product> GetProductsWithCategories();
     }
 }

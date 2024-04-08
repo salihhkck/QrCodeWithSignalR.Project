@@ -9,5 +9,6 @@ namespace Project.BusinessLayer.Abstracts
 {
     public interface IProductService:IGenericService<Product>
     {
+        List<Product> TGetProductsWithCategories();
     }
 }

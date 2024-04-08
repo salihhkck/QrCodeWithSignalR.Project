@@ -1,4 +1,5 @@
-﻿using Project.DataAccessLayer.Abstracts;
+﻿using Microsoft.EntityFrameworkCore;
+using Project.DataAccessLayer.Abstracts;
 using Project.DataAccessLayer.Concretes;
 using Project.DataAccessLayer.Repositories;
 using Project.EntityLayer.Entities.Concretes;
@@ -14,6 +15,13 @@ namespace Project.DataAccessLayer.EntityFramework
     {
         public EfProductDal(SignalRContext context) : base(context)
         {
+        }
+
+        public List<Product> GetProductsWithCategories()
+        {
+            var context = new SignalRContext();
+            var values= context.Products.Include(x=>x.Category).ToList();
+            return values;
         }
     }
 }
